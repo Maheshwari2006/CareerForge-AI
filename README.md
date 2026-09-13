@@ -1,6 +1,6 @@
-# AI Career Mentor
+# CareerForge - AI
 
-AI Career Mentor is an intelligent career guidance platform built using Flask, Python, NLP, OCR, and Machine Learning. The platform helps users analyze resumes, identify skill gaps, receive career recommendations, and improve job readiness.
+CareerForge - AI is an intelligent career guidance platform built using Flask, Python, NLP, OCR, and Machine Learning. The platform helps users analyze resumes, identify skill gaps, receive career recommendations, and improve job readiness.
 
 Features
 Resume Upload & Management
