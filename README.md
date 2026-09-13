@@ -101,20 +101,15 @@ pip install -r requirements.txt
 ```bash
 python app.py
 
-Demo link : Live Demo: https://ai-career-mentor-f69d.onrender.com
+Demo link : Live Demo: https://careerforge-ai-vjnm.onrender.com
 
 Author
 Maheshwari Rewatkar
 =======
 ## Live Demo
 
-https://ai-career-mentor-f69d.onrender.com
+https://careerforge-ai-vjnm.onrender.com
 
 ## Author
 
 **Maheshwari Rewatkar**
-
-B.Tech – Artificial Intelligence
-
-G H Raisoni College of Engineering & Management, Nagpur
->>>>>>> ed91ff1 (Improve README formatting)
