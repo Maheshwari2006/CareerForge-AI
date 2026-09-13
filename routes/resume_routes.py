@@ -19,6 +19,7 @@ from werkzeug.utils import secure_filename
 
 from database.models import db
 from database.models.resume import Resume
+from sqlalchemy import and_
 
 from services.file_service import (
     allowed_file
@@ -44,6 +45,12 @@ resume_bp = Blueprint(
     "resume",
     __name__
 )
+
+
+def _get_user_resume(resume_id):
+    return Resume.query.filter(
+        and_(Resume.id == resume_id, Resume.user_id == current_user.id)
+    ).first_or_404()
 
 
 # ==========================================
@@ -132,7 +139,7 @@ def resume_history():
 
     resumes = Resume.query.filter_by(
         user_id=current_user.id
-    ).all()
+    ).order_by(Resume.id.desc()).all()
 
     return render_template(
         "resume_history.html",
@@ -169,9 +176,7 @@ def download_resume(filename):
 @login_required
 def parse_resume(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -195,9 +200,7 @@ def parse_resume(id):
 @login_required
 def ats_analyzer(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -210,6 +213,8 @@ def ats_analyzer(id):
     )
 
     report = analyzer.analyze()
+    resume.ats_score = report.get("score", report.get("ats_score", 0))
+    db.session.commit()
 
     return render_template(
         "ats_report.html",
@@ -228,9 +233,7 @@ def ats_analyzer(id):
 @login_required
 def match_job(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     if request.method == "POST":
 
@@ -269,9 +272,7 @@ def match_job(id):
 @login_required
 def career_prediction(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -304,9 +305,7 @@ from services.skill_gap_service import (
 @login_required
 def skill_gap(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -339,9 +338,7 @@ from services.roadmap_service import (
 @login_required
 def roadmap(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -378,9 +375,7 @@ from services.interview_service import (
 @login_required
 def interview_questions(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -413,9 +408,7 @@ from services.resume_improvement_service import (
 @login_required
 def resume_improvement(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -448,9 +441,7 @@ from services.dashboard_service import (
 @login_required
 def dashboard_analytics(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path
@@ -483,9 +474,7 @@ from services.pdf_service import (
 @login_required
 def pdf_report(id):
 
-    resume = Resume.query.get_or_404(
-        id
-    )
+    resume = _get_user_resume(id)
 
     parser = ResumeParser(
         resume.file_path

@@ -1,41 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title %}Learning Roadmap | CareerForge AI{% endblock %}
+{% block heading %}Learning Roadmap{% endblock %}
+{% block breadcrumb %}Learning Roadmap{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-<h2>
-Learning Roadmap
-</h2>
-
-<hr>
-
+<div class="roadmap-header"><div><span>PERSONALIZED LEARNING</span><h2>Your AI Career Roadmap</h2><p>Actionable learning steps generated from your missing skills.</p></div><div class="roadmap-goal"><i class="fa-solid fa-flag-checkered"></i><span>Goal</span><strong>Career Growth</strong></div></div>
+<div class="roadmap-list">
 {% for skill, steps in roadmap.items() %}
-
-<h4>
-
-{{ skill }}
-
-</h4>
-
-<ul>
-
-{% for step in steps %}
-
-<li>
-
-{{ step }}
-
-</li>
-
+<div class="roadmap-skill"><div class="timeline-dot"><i class="fa-solid fa-code"></i></div><div class="roadmap-body"><div class="roadmap-title"><h3>{{ skill|title }}</h3><span>{{ steps|length }} steps</span></div>{% for step in steps %}<div class="roadmap-step"><b>{{ loop.index }}</b><span>{{ step }}</span><i class="fa-regular fa-circle"></i></div>{% endfor %}</div></div>
+{% else %}
+<div class="empty-card"><div class="empty-icon"><i class="fa-solid fa-route"></i></div><h3>No roadmap steps available</h3><p>Upload a resume and run skill-gap analysis first.</p></div>
 {% endfor %}
-
-</ul>
-
-<hr>
-
-{% endfor %}
-
 </div>
-
 {% endblock %}

@@ -1,59 +1,12 @@
 {% extends 'base.html' %}
-
+{% block title %}Job Match Report | CareerForge AI{% endblock %}
+{% block heading %}Job Match Report{% endblock %}
+{% block breadcrumb %}Job Match Report{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-<h2>
-Job Match Report
-</h2>
-
-<hr>
-
-<h3>
-
-Match Score:
-
-<span class="badge bg-success">
-
-{{ report.match_score }}%
-
-</span>
-
-</h3>
-
-<hr>
-
-<h4>
-Matched Skills
-</h4>
-
-<ul>
-
-{% for skill in report.matched_skills %}
-
-<li>{{ skill }}</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Missing Skills
-</h4>
-
-<ul>
-
-{% for skill in report.missing_skills %}
-
-<li>{{ skill }}</li>
-
-{% endfor %}
-
-</ul>
-
+<div class="report-intro"><div><span>JOB DESCRIPTION INTELLIGENCE</span><h2>Resume vs Job Match</h2><p>See how your current skill profile aligns with the job description.</p></div></div>
+<div class="match-hero"><div><span>OVERALL MATCH</span><strong>{{ report.match_score }}%</strong></div><div class="progress-track"><div style="width:{{ report.match_score }}%"></div></div><p>{% if report.match_score >= 80 %}Strong match{% elif report.match_score >= 60 %}Good match{% else %}More skills may be required{% endif %}</p></div>
+<div class="analysis-grid">
+<article class="data-card"><div class="data-card-head"><div class="page-icon green"><i class="fa-solid fa-circle-check"></i></div><div><h3>Matched Skills</h3><span>Skills found in both resume and job description</span></div></div><div class="tag-list success">{% for skill in report.matched_skills %}<span>{{ skill }}</span>{% else %}<em>No matched skills.</em>{% endfor %}</div></article>
+<article class="data-card"><div class="data-card-head"><div class="page-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div><div><h3>Missing Skills</h3><span>Skills mentioned by the job but not found in resume</span></div></div><div class="tag-list warning">{% for skill in report.missing_skills %}<span>{{ skill }}</span>{% else %}<em>No missing skills.</em>{% endfor %}</div></article>
 </div>
-
 {% endblock %}

@@ -1,6 +1,6 @@
-# CareerForge - AI
+# CareerForge AI
 
-CareerForge - AI is an intelligent career guidance platform built using Flask, Python, NLP, OCR, and Machine Learning. The platform helps users analyze resumes, identify skill gaps, receive career recommendations, and improve job readiness.
+CareerForge AI is an intelligent career guidance platform built using Flask, Python, NLP, OCR, and Machine Learning. The platform helps users analyze resumes, identify skill gaps, receive career recommendations, and improve job readiness.
 
 Features
 Resume Upload & Management
@@ -86,7 +86,7 @@ Installation
 
 ```bash
 >>>>>>> ed91ff1 (Improve README formatting)
-git clone https://github.com/Maheshwari2006/AI-Career-Mentor-.git
+git clone https://github.com/Maheshwari2006/CareerForge-AI-.git
 cd AI_Career_Mentor
 ```
 

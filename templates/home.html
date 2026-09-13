@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerForge AI | Career Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="auth-page">
+<div class="auth-layout">
+    <section class="auth-showcase">
+        <div class="brand">
+            <div class="brand-mark"><i class="fa-solid fa-robot"></i></div>
+            <div><strong>CareerForge</strong><span>AI</span></div>
+        </div>
+        <div class="showcase-copy">
+            <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> AI-POWERED CAREER INTELLIGENCE</div>
+            <h1>Build your career<br><span>with confidence.</span></h1>
+            <p>Analyze your resume, measure ATS readiness, discover career paths, identify skill gaps and create a practical learning roadmap.</p>
+            <div class="showcase-features">
+                <div><i class="fa-solid fa-file-circle-check"></i><div><strong>Smart Resume Analysis</strong><small>Extract skills, education, projects and experience.</small></div></div>
+                <div><i class="fa-solid fa-bullseye"></i><div><strong>Career Intelligence</strong><small>ATS scoring, career prediction and skill-gap insights.</small></div></div>
+                <div><i class="fa-solid fa-route"></i><div><strong>Personalized Growth</strong><small>Roadmaps and interview preparation from your profile.</small></div></div>
+            </div>
+        </div>
+        <div class="auth-note"><i class="fa-solid fa-circle-check"></i> Your career workspace is private and account-based.</div>
+    </section>
+    <section class="auth-panel">
+        <div class="auth-card">
+            <div class="mobile-brand brand"><div class="brand-mark"><i class="fa-solid fa-robot"></i></div><div><strong>CareerForge</strong><span>AI</span></div></div>
+            <div class="auth-heading"><span>WELCOME</span><h2>Start your career journey</h2><p>Sign in to access your CareerForge AI workspace.</p></div>
+            <div class="hero-actions" style="flex-direction:column;margin-top:18px">
+                <a class="gradient-btn full-btn" href="{{ url_for('auth.login') }}">Login <i class="fa-solid fa-arrow-right"></i></a>
+                <a class="outline-btn full-btn" href="{{ url_for('auth.register') }}">Create Account <i class="fa-solid fa-user-plus"></i></a>
+            </div>
+            <div class="secure-line"><i class="fa-solid fa-shield-halved"></i> Secure account-based career analysis</div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

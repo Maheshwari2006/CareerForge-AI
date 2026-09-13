@@ -1,33 +1,12 @@
 {% extends 'base.html' %}
-
+{% block title %}Interview Prep | CareerForge AI{% endblock %}
+{% block heading %}Interview Preparation{% endblock %}
+{% block breadcrumb %}Interview Prep{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-    <h2>
-        AI Interview Questions
-    </h2>
-
-    <hr>
-
-    {% for skill, questions in questions.items() %}
-
-        <h4>{{ skill }}</h4>
-
-        <ul>
-
-            {% for question in questions %}
-
-                <li>{{ question }}</li>
-
-            {% endfor %}
-
-        </ul>
-
-        <hr>
-
-    {% endfor %}
-
-</div>
-
+<div class="interview-hero"><div><span>AI INTERVIEW COACH</span><h2>Practice questions from your skills</h2><p>Prepare for technical interviews using questions generated from your resume profile.</p></div><div class="interview-icon"><i class="fa-solid fa-comments"></i></div></div>
+{% for skill, skill_questions in questions.items() %}
+<section class="question-section"><div class="section-head"><div><span>TOPIC</span><h3>{{ skill }}</h3></div><div class="topic-count">{{ skill_questions|length }} questions</div></div><div class="question-grid">{% for question in skill_questions %}<article class="question-card"><div class="q-number">Q{{ loop.index }}</div><h4>{{ question }}</h4><button type="button" class="reveal-btn" onclick="this.nextElementSibling.classList.toggle('show'); this.classList.toggle('open')">Think about your answer <i class="fa-solid fa-chevron-down"></i></button><div class="answer-space"><p>Explain the concept clearly, give an example, and connect it to a project when possible.</p></div></article>{% endfor %}</div></section>
+{% else %}
+<div class="empty-card"><div class="empty-icon"><i class="fa-solid fa-comments"></i></div><h3>No interview questions available</h3><p>No matching interview topics were found for the extracted skills.</p></div>
+{% endfor %}
 {% endblock %}

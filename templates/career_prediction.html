@@ -1,37 +1,12 @@
 {% extends 'base.html' %}
-
+{% block title %}Career Prediction | CareerForge AI{% endblock %}
+{% block heading %}Career Prediction{% endblock %}
+{% block breadcrumb %}Career Prediction{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-<h2>
-Career Prediction
-</h2>
-
-<hr>
-
-<h3>
-
-Recommended Career:
-
-<span class="text-primary">
-
-{{ result.career }}
-
-</span>
-
-</h3>
-
-<hr>
-
-<h4>
-
-Confidence Score:
-
-{{ result.confidence }}%
-
-</h4>
-
+<div class="career-hero">
+    <div><span>AI CAREER INTELLIGENCE</span><h2>Your strongest career direction</h2><p>Based on the skills extracted from your resume.</p></div>
+    <div class="career-match"><strong>{{ result.confidence }}%</strong><span>Confidence</span></div>
 </div>
-
+<div class="career-result"><div class="career-icon"><i class="fa-solid fa-brain"></i></div><div><span>RECOMMENDED CAREER</span><h2>{{ result.career }}</h2><p>Your current skill profile shows the strongest alignment with this career path.</p></div></div>
+<div class="data-card"><div class="data-card-head"><div class="page-icon purple"><i class="fa-solid fa-rocket"></i></div><div><h3>What to do next</h3><span>Continue with your personalized career analysis</span></div></div><div class="quick-actions"><a href="{{ url_for('resume.resume_history') }}">Open Resume History <i class="fa-solid fa-arrow-right"></i></a></div></div>
 {% endblock %}

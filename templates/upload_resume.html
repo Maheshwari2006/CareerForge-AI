@@ -1,44 +1,38 @@
 {% extends 'base.html' %}
-
+{% block title %}Upload Resume | CareerForge AI{% endblock %}
+{% block heading %}Upload Resume{% endblock %}
+{% block breadcrumb %}Upload Resume{% endblock %}
 {% block content %}
-
-<div class="row justify-content-center">
-
-<div class="col-md-8">
-
-<div class="card shadow p-4">
-
-<h2>
-Upload Resume
-</h2>
-
-<hr>
-
-<form method="POST"
-      enctype="multipart/form-data">
-
-<div class="mb-3">
-
-<input type="file"
-       name="resume"
-       class="form-control"
-       accept=".pdf"
-       required>
-
+<div class="center-page">
+    <div class="upload-card">
+        <div class="upload-title"><div class="page-icon purple"><i class="fa-solid fa-cloud-arrow-up"></i></div><div><span>RESUME INTELLIGENCE</span><h2>Upload your resume</h2><p>Start your AI-powered career analysis.</p></div></div>
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+            <label class="drop-zone" id="dropZone">
+                <input type="file" name="resume" id="resumeFile" accept=".pdf" required hidden>
+                <div class="drop-icon"><i class="fa-solid fa-file-arrow-up"></i></div>
+                <h3>Drag & drop your resume here</h3>
+                <p>or <strong>browse from your device</strong></p>
+                <small>PDF files only • Maximum 16 MB</small>
+                <div class="selected-file" id="selectedFile"></div>
+            </label>
+            <button class="gradient-btn full-btn" type="submit"><i class="fa-solid fa-wand-magic-sparkles"></i> Upload & Analyze Resume</button>
+        </form>
+        <div class="upload-features">
+            <div><i class="fa-solid fa-file-lines"></i><span>Resume Parsing</span><small>Extract profile data</small></div>
+            <div><i class="fa-solid fa-code"></i><span>Skill Extraction</span><small>Identify key skills</small></div>
+            <div><i class="fa-solid fa-bullseye"></i><span>ATS Analysis</span><small>Check compatibility</small></div>
+            <div><i class="fa-solid fa-brain"></i><span>Career AI</span><small>Find career direction</small></div>
+        </div>
+    </div>
 </div>
-
-<button class="btn btn-primary">
-
-Upload Resume
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
+{% endblock %}
+{% block scripts %}
+<script>
+const input=document.getElementById('resumeFile'), zone=document.getElementById('dropZone'), selected=document.getElementById('selectedFile');
+function showFile(file){ if(!file) return; selected.innerHTML='<i class="fa-solid fa-file-pdf"></i> '+file.name; zone.classList.add('has-file'); }
+input.addEventListener('change',()=>showFile(input.files[0]));
+['dragenter','dragover'].forEach(e=>zone.addEventListener(e,ev=>{ev.preventDefault();zone.classList.add('dragging');}));
+['dragleave','drop'].forEach(e=>zone.addEventListener(e,ev=>{ev.preventDefault();zone.classList.remove('dragging');}));
+zone.addEventListener('drop',ev=>{const f=ev.dataTransfer.files[0]; if(f && f.type==='application/pdf'){input.files=ev.dataTransfer.files;showFile(f);}});
+</script>
 {% endblock %}

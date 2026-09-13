@@ -1,64 +1,53 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-<div class="row justify-content-center">
-
-<div class="col-md-6">
-
-<div class="card shadow p-4">
-
-<h2 class="text-center mb-4">
-Register
-</h2>
-
-<form method="POST">
-
-<div class="mb-3">
-
-<label>Name</label>
-
-<input type="text"
-       name="full_name"
-       class="form-control"
-       required>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account | CareerForge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="auth-page">
+<div class="auth-layout">
+    <section class="auth-showcase">
+        <div class="auth-brand"><div class="brand-mark"><i class="fa-solid fa-robot"></i></div><div><strong>AI Career</strong><span>Mentor</span></div></div>
+        <div class="showcase-copy">
+            <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> START YOUR AI CAREER JOURNEY</div>
+            <h1>Build your <span>dream career</span> with AI.</h1>
+            <p>Create your account and unlock resume intelligence, ATS analysis, career prediction, skill-gap analysis and personalized learning.</p>
+            <div class="showcase-features">
+                <div><i class="fa-solid fa-file-circle-check"></i><span><strong>Resume Intelligence</strong><small>Understand what your resume says about you.</small></span></div>
+                <div><i class="fa-solid fa-brain"></i><span><strong>Career Prediction</strong><small>Discover roles aligned with your skills.</small></span></div>
+                <div><i class="fa-solid fa-comments"></i><span><strong>Interview Preparation</strong><small>Practice questions generated from your profile.</small></span></div>
+            </div>
+        </div>
+        <div class="auth-note"><i class="fa-solid fa-rocket"></i> Upload. Analyze. Improve. Succeed.</div>
+    </section>
+    <section class="auth-panel">
+        <div class="auth-card">
+            <div class="mobile-brand"><div class="brand-mark"><i class="fa-solid fa-robot"></i></div></div>
+            <div class="auth-heading"><span>AI CAREER MENTOR</span><h2>Create your account</h2><p>Start your personalized career journey today.</p></div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}{% for message in messages %}<div class="auth-alert"><i class="fa-solid fa-circle-info"></i>{{ message }}</div>{% endfor %}{% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('auth.register') }}" class="auth-form">
+                <label>Full name</label>
+                <div class="input-field"><i class="fa-regular fa-user"></i><input type="text" name="full_name" placeholder="Your full name" required></div>
+                <label>Email address</label>
+                <div class="input-field"><i class="fa-regular fa-envelope"></i><input type="email" name="email" placeholder="you@example.com" required></div>
+                <label>Password</label>
+                <div class="input-field"><i class="fa-solid fa-lock"></i><input id="registerPassword" type="password" name="password" placeholder="Create a password" required><button type="button" onclick="toggleField('registerPassword',this)"><i class="fa-regular fa-eye"></i></button></div>
+                <label class="check-row"><input type="checkbox" required><span>I agree to the <a href="#">Terms & Conditions</a></span></label>
+                <button class="gradient-btn" type="submit">Create Account <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+            <div class="auth-switch">Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></div>
+            <div class="secure-line"><i class="fa-solid fa-shield-halved"></i> Secure AI-powered career guidance</div>
+        </div>
+    </section>
 </div>
-
-<div class="mb-3">
-
-<label>Email</label>
-
-<input type="email"
-       name="email"
-       class="form-control"
-       required>
-
-</div>
-
-<div class="mb-3">
-
-<label>Password</label>
-
-<input type="password"
-       name="password"
-       class="form-control"
-       required>
-
-</div>
-
-<button class="btn btn-primary w-100">
-
-Register
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-{% endblock %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

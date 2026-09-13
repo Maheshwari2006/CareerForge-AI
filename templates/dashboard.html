@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
-
+{% block title %}Dashboard | CareerForge AI{% endblock %}
+{% block heading %}Career Dashboard{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
 {% block content %}
+<section class="hero-card">
+    <div class="hero-copy">
+        <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> AI POWERED CAREER PLATFORM</div>
+        <h2>Build your career <span>with AI.</span></h2>
+        <p>Upload your resume, understand your skills, discover your career direction and turn skill gaps into a personalized learning plan.</p>
+        <div class="hero-actions">
+            <a class="gradient-btn" href="{{ url_for('resume.upload_resume') }}">Upload Resume <i class="fa-solid fa-arrow-up"></i></a>
+            <a class="outline-btn" href="{{ url_for('resume.resume_history') }}">Resume History <i class="fa-regular fa-clock"></i></a>
+        </div>
+    </div>
+    <div class="hero-visual"><div class="orb"><i class="fa-solid fa-robot"></i></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div></div>
+</section>
 
-<div class="card shadow p-5">
-
-<h2>
-Welcome to AI Career Mentor
-</h2>
-
-<hr>
-
-<div class="d-flex gap-3">
-
-<a href="/upload-resume"
-   class="btn btn-primary">
-
-Upload Resume
-
-</a>
-
-<a href="/resume-history"
-   class="btn btn-success">
-
-Resume History
-
-</a>
-
-<a href="/logout"
-   class="btn btn-danger">
-
-Logout
-
-</a>
-
+<div class="section-head"><div><span>YOUR CAREER WORKSPACE</span><h3>Career Intelligence</h3></div></div>
+<div class="feature-grid">
+    <a class="feature-card purple" href="{{ url_for('resume.upload_resume') }}"><div class="feature-icon"><i class="fa-solid fa-file-circle-check"></i></div><h4>Resume Analysis</h4><p>Extract skills, education, projects and experience from your resume.</p><span>Analyze Resume <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card blue" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-bullseye"></i></div><h4>ATS Analyzer</h4><p>Check ATS readiness, missing keywords and actionable suggestions.</p><span>Check ATS <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card cyan" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-brain"></i></div><h4>Career Prediction</h4><p>Discover a career direction based on your extracted skills.</p><span>Predict Career <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card green" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-route"></i></div><h4>Learning Roadmap</h4><p>Turn missing skills into a step-by-step learning roadmap.</p><span>View Roadmap <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card orange" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-code"></i></div><h4>Skill Gap</h4><p>Compare your skills against an AI Engineer target profile.</p><span>Find Gaps <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card pink" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-comments"></i></div><h4>Interview Prep</h4><p>Generate questions from the skills found in your resume.</p><span>Practice Now <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card indigo" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><h4>Resume Improve</h4><p>Get targeted suggestions to strengthen your resume.</p><span>Improve Resume <i class="fa-solid fa-arrow-right"></i></span></a>
+    <a class="feature-card teal" href="{{ url_for('resume.resume_history') }}"><div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div><h4>Analytics</h4><p>See extracted profile counts and your recommended career.</p><span>Open Analytics <i class="fa-solid fa-arrow-right"></i></span></a>
 </div>
 
-</div>
-
+<section class="workflow">
+    <div class="section-head"><div><span>HOW IT WORKS</span><h3>From resume to career direction</h3></div></div>
+    <div class="workflow-grid">
+        <div><b>01</b><i class="fa-solid fa-upload"></i><h4>Upload</h4><p>Add your PDF resume.</p></div>
+        <div class="connector"></div>
+        <div><b>02</b><i class="fa-solid fa-magnifying-glass-chart"></i><h4>Analyze</h4><p>AI extracts your profile.</p></div>
+        <div class="connector"></div>
+        <div><b>03</b><i class="fa-solid fa-bullseye"></i><h4>Evaluate</h4><p>Find gaps and opportunities.</p></div>
+        <div class="connector"></div>
+        <div><b>04</b><i class="fa-solid fa-rocket"></i><h4>Grow</h4><p>Follow your roadmap.</p></div>
+    </div>
+</section>
 {% endblock %}

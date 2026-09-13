@@ -1,67 +1,21 @@
 {% extends 'base.html' %}
-
+{% block title %}ATS Analyzer | CareerForge AI{% endblock %}
+{% block heading %}ATS Analyzer{% endblock %}
+{% block breadcrumb %}ATS Report{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-<h2>
-ATS Analysis Report
-</h2>
-
-<hr>
-
-<h3>
-
-ATS Score:
-
-<span class="badge bg-success">
-
-{{ report.score }}%
-
-</span>
-
-</h3>
-
-<hr>
-
-<h4>
-Missing Keywords
-</h4>
-
-<ul>
-
-{% for keyword in report.missing_keywords %}
-
-<li>
-
-{{ keyword }}
-
-</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Suggestions
-</h4>
-
-<ul>
-
-{% for item in report.suggestions %}
-
-<li>
-
-{{ item }}
-
-</li>
-
-{% endfor %}
-
-</ul>
-
+<div class="report-intro"><div><span>RESUME INTELLIGENCE</span><h2>ATS Analyzer Report</h2><p>Detailed analysis of your resume's ATS readiness.</p></div><div class="report-badge"><i class="fa-solid fa-bullseye"></i> ATS READY</div></div>
+<div class="ats-layout">
+    <div class="score-card">
+        <div class="score-ring" style="--score: {{ report.score }}%;">
+            <div><strong>{{ report.score }}</strong><span>/100</span></div>
+        </div>
+        <h3>{% if report.score >= 80 %}Excellent{% elif report.score >= 60 %}Good{% else %}Needs Improvement{% endif %}</h3>
+        <p>Your resume contains {{ report.score }}% of the available skill keywords.</p>
+    </div>
+    <div class="data-card">
+        <div class="data-card-head"><div class="page-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div><div><h3>Missing Keywords</h3><span>Skills you may consider adding</span></div></div>
+        <div class="tag-list warning">{% for keyword in report.missing_keywords %}<span>{{ keyword }}</span>{% else %}<em>No missing keywords.</em>{% endfor %}</div>
+    </div>
 </div>
-
+<div class="data-card"><div class="data-card-head"><div class="page-icon green"><i class="fa-solid fa-lightbulb"></i></div><div><h3>AI Recommendations</h3><span>Suggestions generated from your resume profile</span></div></div><div class="recommend-list">{% for item in report.suggestions %}<div><i class="fa-solid fa-circle-check"></i><p>{{ item }}</p></div>{% endfor %}</div></div>
 {% endblock %}

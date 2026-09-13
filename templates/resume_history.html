@@ -1,115 +1,45 @@
 {% extends 'base.html' %}
-
+{% block title %}Resume History | CareerForge AI{% endblock %}
+{% block heading %}Resume History{% endblock %}
+{% block breadcrumb %}Resume History{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-    <h2>
-        Resume History
-    </h2>
-
-    <hr>
-
-    <table class="table table-bordered table-hover">
-
-        <thead>
-
-            <tr>
-
-                <th>ID</th>
-                <th>File Name</th>
-                <th>ATS Score</th>
-                <th>Action</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            {% for resume in resumes %}
-
-            <tr>
-
-                <td>
-                    {{ resume.id }}
-                </td>
-
-                <td>
-                    {{ resume.file_name }}
-                </td>
-
-                <td>
-                    {{ resume.ats_score }}
-                </td>
-
-                <td>
-
-                    <a href="/download/{{ resume.file_name }}"
-                       class="btn btn-success btn-sm">
-                        Download
-                    </a>
-
-                    <a href="/parse-resume/{{ resume.id }}"
-                       class="btn btn-primary btn-sm">
-                        Parse
-                    </a>
-
-                    <a href="/ats-analyzer/{{ resume.id }}"
-                       class="btn btn-warning btn-sm">
-                        ATS
-                    </a>
-
-                    <a href="/match-job/{{ resume.id }}"
-                       class="btn btn-info btn-sm">
-                        Match JD
-                    </a>
-
-                    <a href="/career-prediction/{{ resume.id }}"
-                       class="btn btn-dark btn-sm">
-                        Career
-                    </a>
-
-                    <a href="/skill-gap/{{ resume.id }}"
-                       class="btn btn-secondary btn-sm">
-                        Skill Gap
-                    </a>
-
-                    <a href="/roadmap/{{ resume.id }}"
-                       class="btn btn-danger btn-sm">
-                        Roadmap
-                    </a>
-                    
-                    <a href="/interview/{{ resume.id }}"
-                        class="btn btn-primary btn-sm">
-                        Interview
-                    </a>
-
-                    <a href="/resume-improvement/{{ resume.id }}"
-                        class="btn btn-success btn-sm">
-                        Improve
-                    </a>
-
-                    <a href="/dashboard-analytics/{{ resume.id }}"
-                        class="btn btn-primary btn-sm">
-                        Dashboard
-                    </a>
-
-                    <a href="/pdf-report/{{ resume.id }}"
-                        class="btn btn-danger btn-sm">
-                         PDF
-                    </a>
-
-                </td>
-
-            </tr>
-
-            {% endfor %}
-
-        </tbody>
-
-    </table>
-
+<div class="section-head history-head">
+    <div><span>YOUR RESUMES</span><h3>Resume History</h3><p>Manage, analyze and export your uploaded resumes.</p></div>
+    <a class="gradient-btn" href="{{ url_for('resume.upload_resume') }}"><i class="fa-solid fa-plus"></i> Upload New</a>
 </div>
-
+{% if resumes %}
+<div class="table-card">
+    <div class="table-scroll">
+        <table class="modern-table">
+            <thead><tr><th>Resume</th><th>Uploaded</th><th>ATS Score</th><th>AI Actions</th></tr></thead>
+            <tbody>
+            {% for resume in resumes %}
+            <tr>
+                <td><div class="resume-name"><div class="file-icon"><i class="fa-solid fa-file-pdf"></i></div><div><strong>{{ resume.file_name }}</strong><small>Resume #{{ resume.id }}</small></div></div></td>
+                <td>{{ resume.uploaded_at or 'Recently' }}</td>
+                <td><span class="score-pill">{{ resume.ats_score or 0 }}%</span></td>
+                <td>
+                    <div class="action-grid">
+                        <a href="/parse-resume/{{ resume.id }}" title="Parse"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a href="/ats-analyzer/{{ resume.id }}" title="ATS"><i class="fa-solid fa-bullseye"></i></a>
+                        <a href="/match-job/{{ resume.id }}" title="Match JD"><i class="fa-solid fa-briefcase"></i></a>
+                        <a href="/career-prediction/{{ resume.id }}" title="Career"><i class="fa-solid fa-brain"></i></a>
+                        <a href="/skill-gap/{{ resume.id }}" title="Skill Gap"><i class="fa-solid fa-code"></i></a>
+                        <a href="/roadmap/{{ resume.id }}" title="Roadmap"><i class="fa-solid fa-route"></i></a>
+                        <a href="/interview/{{ resume.id }}" title="Interview"><i class="fa-solid fa-comments"></i></a>
+                        <a href="/resume-improvement/{{ resume.id }}" title="Improve"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+                        <a href="/dashboard-analytics/{{ resume.id }}" title="Analytics"><i class="fa-solid fa-chart-pie"></i></a>
+                        <a href="/pdf-report/{{ resume.id }}" title="PDF"><i class="fa-solid fa-file-pdf"></i></a>
+                        <a class="download" href="/download/{{ resume.file_name }}" title="Download"><i class="fa-solid fa-download"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="empty-card"><div class="empty-icon"><i class="fa-regular fa-file-lines"></i></div><h3>No resumes yet</h3><p>Upload your first resume to start your AI career analysis.</p><a class="gradient-btn" href="{{ url_for('resume.upload_resume') }}">Upload Resume</a></div>
+{% endif %}
 {% endblock %}

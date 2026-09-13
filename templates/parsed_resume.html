@@ -1,77 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title %}Parsed Resume | CareerForge AI{% endblock %}
+{% block heading %}Parsed Resume{% endblock %}
+{% block breadcrumb %}Parsed Resume{% endblock %}
 {% block content %}
-
-<div class="card p-4 shadow">
-
-<h2>
-Parsed Resume
-</h2>
-
-<hr>
-
-<h4>
-Skills
-</h4>
-
-<ul>
-
-{% for skill in result.skills %}
-
-<li>{{ skill }}</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Education
-</h4>
-
-<ul>
-
-{% for edu in result.education %}
-
-<li>{{ edu }}</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Projects
-</h4>
-
-<ul>
-
-{% for project in result.projects %}
-
-<li>{{ project }}</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Experience
-</h4>
-
-<ul>
-
-{% for exp in result.experience %}
-
-<li>{{ exp }}</li>
-
-{% endfor %}
-
-</ul>
-
+<div class="success-banner"><div class="success-icon"><i class="fa-solid fa-file-circle-check"></i></div><div><span>ANALYSIS COMPLETE</span><h2>Resume parsed successfully 🎉</h2><p>AI extracted the key information from your uploaded resume.</p></div></div>
+<div class="analysis-grid">
+    <article class="data-card"><div class="data-card-head"><div class="page-icon purple"><i class="fa-solid fa-code"></i></div><div><h3>Skills</h3><span>Technical skills detected</span></div></div><div class="tag-list">{% for skill in result.skills %}<span>{{ skill }}</span>{% else %}<em>No skills detected.</em>{% endfor %}</div><div class="count-note">{{ result.skills|length }} skills detected</div></article>
+    <article class="data-card"><div class="data-card-head"><div class="page-icon blue"><i class="fa-solid fa-graduation-cap"></i></div><div><h3>Education</h3><span>Education information</span></div></div><div class="item-list">{% for edu in result.education %}<div><i class="fa-solid fa-circle-check"></i>{{ edu }}</div>{% else %}<em>No education detected.</em>{% endfor %}</div></article>
+    <article class="data-card"><div class="data-card-head"><div class="page-icon orange"><i class="fa-solid fa-folder-open"></i></div><div><h3>Projects</h3><span>Projects detected</span></div></div><div class="text-list">{% for project in result.projects %}<div><i class="fa-solid fa-star"></i><p>{{ project }}</p></div>{% else %}<em>No projects detected.</em>{% endfor %}</div></article>
+    <article class="data-card"><div class="data-card-head"><div class="page-icon green"><i class="fa-solid fa-briefcase"></i></div><div><h3>Experience</h3><span>Professional experience</span></div></div><div class="text-list">{% for exp in result.experience %}<div><i class="fa-solid fa-check"></i><p>{{ exp }}</p></div>{% else %}<em>No experience detected.</em>{% endfor %}</div></article>
 </div>
-
+<div class="next-card"><div><span>NEXT STEP</span><h3>Continue your career analysis</h3><p>Open Resume History to run ATS, career prediction, skill-gap, roadmap and interview tools.</p></div><a class="gradient-btn" href="{{ url_for('resume.resume_history') }}">Continue <i class="fa-solid fa-arrow-right"></i></a></div>
 {% endblock %}

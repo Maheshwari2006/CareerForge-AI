@@ -32,7 +32,7 @@ class PDFReportGenerator:
 
         content.append(
             Paragraph(
-                "AI Career Mentor Report",
+                "CareerForge AI Report",
                 styles["Title"]
             )
         )

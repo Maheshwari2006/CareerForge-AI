@@ -1,27 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title %}Resume Improvement | CareerForge AI{% endblock %}
+{% block heading %}Resume Improvement{% endblock %}
+{% block breadcrumb %}Resume Improvement{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-    <h2>
-        Resume Improvement Suggestions
-    </h2>
-
-    <hr>
-
-    <ul>
-
-        {% for suggestion in suggestions %}
-
-            <li>
-                {{ suggestion }}
-            </li>
-
-        {% endfor %}
-
-    </ul>
-
+<div class="report-intro"><div><span>AI RESUME COACH</span><h2>Improve your resume</h2><p>Targeted suggestions based on your extracted profile.</p></div><div class="report-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI SUGGESTIONS</div></div>
+<div class="suggestion-grid">
+{% for suggestion in suggestions %}
+<article class="suggestion-card"><div class="suggestion-number">{{ "%02d"|format(loop.index) }}</div><div><h3>Improvement {{ loop.index }}</h3><p>{{ suggestion }}</p></div><i class="fa-solid fa-arrow-up-right-dots"></i></article>
+{% else %}
+<div class="empty-card"><div class="empty-icon"><i class="fa-solid fa-circle-check"></i></div><h3>Excellent resume!</h3><p>No major improvements were identified.</p></div>
+{% endfor %}
 </div>
-
 {% endblock %}

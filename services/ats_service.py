@@ -105,19 +105,3 @@ class ATSAnalyzer:
             "suggestions":
             self.suggestions()
         }
-def calculate_score(self):
-
-    found_skills = self.parsed_resume[
-        "skills"
-    ]
-
-    score = int(
-        (
-            len(found_skills)
-            /
-            len(SKILLS)
-        ) * 100
-    )
-
-    return min(score, 100)
-    

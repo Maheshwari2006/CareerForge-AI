@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-python-3.11.9
-=======
 python-3.11.11
->>>>>>> e4b4918 (Final AI Career Mentor Project - Deployment Ready)

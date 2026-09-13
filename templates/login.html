@@ -1,53 +1,50 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
-<div class="row justify-content-center">
-
-<div class="col-md-6">
-
-<div class="card shadow p-4">
-
-<h2 class="text-center mb-4">
-Login
-</h2>
-
-<form method="POST">
-
-<div class="mb-3">
-
-<label>Email</label>
-
-<input type="email"
-       name="email"
-       class="form-control"
-       required>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | CareerForge AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="auth-page">
+<div class="auth-layout">
+    <section class="auth-showcase">
+        <div class="auth-brand"><div class="brand-mark"><i class="fa-solid fa-robot"></i></div><div><strong>AI Career</strong><span>Mentor</span></div></div>
+        <div class="showcase-copy">
+            <div class="eyebrow"><i class="fa-solid fa-sparkles"></i> AI-POWERED CAREER GUIDANCE</div>
+            <h1>Turn your resume into a <span>career strategy.</span></h1>
+            <p>Analyze your profile, discover skill gaps, explore career paths and prepare for interviews with one intelligent platform.</p>
+            <div class="showcase-features">
+                <div><i class="fa-solid fa-file-circle-check"></i><span><strong>Smart Resume Analysis</strong><small>Extract skills, projects and experience.</small></span></div>
+                <div><i class="fa-solid fa-bullseye"></i><span><strong>ATS Intelligence</strong><small>Find missing keywords and improvements.</small></span></div>
+                <div><i class="fa-solid fa-route"></i><span><strong>Personalized Roadmap</strong><small>Turn skill gaps into actionable learning.</small></span></div>
+            </div>
+        </div>
+        <div class="auth-note"><i class="fa-solid fa-shield-halved"></i> Your career data stays inside your account.</div>
+    </section>
+    <section class="auth-panel">
+        <div class="auth-card">
+            <div class="mobile-brand"><div class="brand-mark"><i class="fa-solid fa-robot"></i></div></div>
+            <div class="auth-heading"><span>WELCOME BACK</span><h2>Login to your account</h2><p>Continue your AI-powered career journey.</p></div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}{% for message in messages %}<div class="auth-alert"><i class="fa-solid fa-circle-info"></i>{{ message }}</div>{% endfor %}{% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('auth.login') }}" class="auth-form">
+                <label>Email address</label>
+                <div class="input-field"><i class="fa-regular fa-envelope"></i><input type="email" name="email" placeholder="you@example.com" required></div>
+                <label>Password</label>
+                <div class="input-field"><i class="fa-solid fa-lock"></i><input id="loginPassword" type="password" name="password" placeholder="Enter your password" required><button type="button" onclick="toggleField('loginPassword',this)"><i class="fa-regular fa-eye"></i></button></div>
+                <button class="gradient-btn" type="submit">Login <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+            <div class="auth-switch">Don't have an account? <a href="{{ url_for('auth.register') }}">Create one</a></div>
+            <div class="secure-line"><i class="fa-solid fa-lock"></i> Secure AI career workspace</div>
+        </div>
+    </section>
 </div>
-
-<div class="mb-3">
-
-<label>Password</label>
-
-<input type="password"
-       name="password"
-       class="form-control"
-       required>
-
-</div>
-
-<button class="btn btn-success w-100">
-
-Login
-
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-{% endblock %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,55 +1,16 @@
 {% extends 'base.html' %}
-
+{% block title %}Skill Gap | CareerForge AI{% endblock %}
+{% block heading %}Skill Gap Analysis{% endblock %}
+{% block breadcrumb %}Skill Gap{% endblock %}
+{% set required_count = report.required_skills|length %}
+{% set missing_count = report.missing_skills|length %}
+{% set ready = ((required_count - missing_count) / required_count * 100) if required_count else 0 %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-<h2>
-Skill Gap Analysis
-</h2>
-
-<hr>
-
-<h3>
-
-Target Career:
-
-{{ report.career }}
-
-</h3>
-
-<hr>
-
-<h4>
-Required Skills
-</h4>
-
-<ul>
-
-{% for skill in report.required_skills %}
-
-<li>{{ skill }}</li>
-
-{% endfor %}
-
-</ul>
-
-<hr>
-
-<h4>
-Missing Skills
-</h4>
-
-<ul>
-
-{% for skill in report.missing_skills %}
-
-<li>{{ skill }}</li>
-
-{% endfor %}
-
-</ul>
-
+<div class="report-intro"><div><span>CAREER READINESS</span><h2>Skill Gap Analysis</h2><p>Target career: <strong>{{ report.career }}</strong></p></div><div class="readiness"><strong>{{ ready|round|int }}%</strong><span>Ready</span></div></div>
+<div class="progress-card"><div class="progress-head"><span>Overall readiness</span><strong>{{ ready|round|int }}%</strong></div><div class="progress-track"><div style="width:{{ ready }}%"></div></div></div>
+<div class="analysis-grid">
+<article class="data-card"><div class="data-card-head"><div class="page-icon blue"><i class="fa-solid fa-list-check"></i></div><div><h3>Required Skills</h3><span>{{ required_count }} skills for {{ report.career }}</span></div></div><div class="tag-list">{% for skill in report.required_skills %}<span>{{ skill }}</span>{% endfor %}</div></article>
+<article class="data-card"><div class="data-card-head"><div class="page-icon orange"><i class="fa-solid fa-puzzle-piece"></i></div><div><h3>Missing Skills</h3><span>{{ missing_count }} skills to improve</span></div></div><div class="tag-list warning">{% for skill in report.missing_skills %}<span>{{ skill }}</span>{% else %}<em>No skill gaps detected.</em>{% endfor %}</div></article>
 </div>
-
+<div class="next-card"><div><span>RECOMMENDED</span><h3>Turn your gaps into a roadmap</h3><p>Use the roadmap generator to see learning steps for missing skills.</p></div><a class="gradient-btn" href="{{ url_for('resume.resume_history') }}">Open Resume History <i class="fa-solid fa-arrow-right"></i></a></div>
 {% endblock %}

@@ -1,93 +1,14 @@
 {% extends 'base.html' %}
-
+{% block title %}Analytics | CareerForge AI{% endblock %}
+{% block heading %}Career Analytics{% endblock %}
+{% block breadcrumb %}Analytics{% endblock %}
 {% block content %}
-
-<div class="card shadow p-4">
-
-    <h2>
-        Dashboard Analytics
-    </h2>
-
-    <hr>
-
-    <div class="row">
-
-        <div class="col-md-3">
-
-            <div class="card p-3">
-
-                <h4>
-                    Skills
-                </h4>
-
-                <h2>
-                    {{ report.skills_count }}
-                </h2>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="card p-3">
-
-                <h4>
-                    Projects
-                </h4>
-
-                <h2>
-                    {{ report.projects_count }}
-                </h2>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="card p-3">
-
-                <h4>
-                    Experience
-                </h4>
-
-                <h2>
-                    {{ report.experience_count }}
-                </h2>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="analytics-card">
-
-                <h4>
-                    Education
-                </h4>
-
-                <h2>
-                    {{ report.education_count }}
-                </h2>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <hr>
-
-    <h4>
-        Recommended Career
-    </h4>
-
-    <p>
-        {{ report.career }}
-    </p>
-
+<div class="report-intro"><div><span>PROFILE ANALYTICS</span><h2>Your resume at a glance</h2><p>Quick profile metrics extracted from your resume.</p></div><div class="report-badge"><i class="fa-solid fa-chart-pie"></i> PROFILE</div></div>
+<div class="metric-grid">
+<div class="metric-card purple"><span>SKILLS</span><strong>{{ report.skills_count }}</strong><i class="fa-solid fa-code"></i></div>
+<div class="metric-card blue"><span>PROJECTS</span><strong>{{ report.projects_count }}</strong><i class="fa-solid fa-folder-open"></i></div>
+<div class="metric-card green"><span>EXPERIENCE</span><strong>{{ report.experience_count }}</strong><i class="fa-solid fa-briefcase"></i></div>
+<div class="metric-card orange"><span>EDUCATION</span><strong>{{ report.education_count }}</strong><i class="fa-solid fa-graduation-cap"></i></div>
 </div>
-
+<div class="analytics-grid"><div class="data-card"><div class="data-card-head"><div class="page-icon purple"><i class="fa-solid fa-chart-column"></i></div><div><h3>Profile Composition</h3><span>Extracted information count</span></div></div><div class="bars"><div><span>Skills</span><b style="width:{{ [report.skills_count*10,100]|min }}%"></b><em>{{ report.skills_count }}</em></div><div><span>Projects</span><b style="width:{{ [report.projects_count*20,100]|min }}%"></b><em>{{ report.projects_count }}</em></div><div><span>Experience</span><b style="width:{{ [report.experience_count*20,100]|min }}%"></b><em>{{ report.experience_count }}</em></div><div><span>Education</span><b style="width:{{ [report.education_count*20,100]|min }}%"></b><em>{{ report.education_count }}</em></div></div></div><div class="data-card career-panel"><div class="career-icon"><i class="fa-solid fa-brain"></i></div><span>RECOMMENDED CAREER</span><h2>{{ report.career }}</h2><p>Your current extracted profile is being evaluated toward this career direction.</p></div></div>
 {% endblock %}
